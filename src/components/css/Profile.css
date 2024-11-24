@@ -1,0 +1,154 @@
+.profile-container {
+  width: 40%;
+  height: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(196, 255, 3, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info p {
+  font-size: 16px;
+  color: #f80000;
+  position: relative;
+}
+
+.profile-info p::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #f40a35;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.profile-info p:hover::after {
+  width: 100%;
+}
+
+.posts-container {
+  margin-top: 30px;
+}
+
+.post-item {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.post-actions button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.post-actions button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.post-actions button:first-child {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.post-actions button:first-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.post-actions button:first-child:hover::after {
+  left: 100%;
+}
+
+.post-actions button:last-child {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.post-actions button:last-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.post-actions button:last-child:hover::after {
+  left: 100%;
+}
+
+.profile-btn {
+  width: 30%;
+  margin-left: 35%;
+  background-color: #28a745;
+  color: rgb(183, 25, 25);
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-3px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.profile-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.profile-btn:hover::after {
+  left: 100%;
+}

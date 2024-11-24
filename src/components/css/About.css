@@ -1,0 +1,155 @@
+.about-container {
+  padding: 50px;
+  background: linear-gradient(145deg, #f1f1f1, #e2e2e2);
+  color: #333;
+  line-height: 1.8;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.about-container:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInDown 1.5s ease-out;
+}
+
+.about-header h1 {
+  font-size: 48px;
+  color: #ff5f00;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  animation: slideInFromTop 1s ease-out;
+}
+
+.about-header p {
+  font-size: 20px;
+  color: #777;
+  margin-top: 10px;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+.about-section {
+  margin-bottom: 50px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.about-section:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.about-section h2 {
+  font-size: 36px;
+  color: #ff5f00;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  animation: fadeInUp 1s ease-out;
+}
+
+.about-section p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.8;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.about-section ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.about-section ul li {
+  font-size: 18px;
+  color: #444;
+  position: relative;
+  padding-left: 25px;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.about-section ul li::before {
+  content: "•";
+  color: #ff5f00;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 22px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

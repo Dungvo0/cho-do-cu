@@ -1,0 +1,79 @@
+/* src/components/CreateNew.css */
+
+.create-new {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #d4a017; /* Viền vàng đậm */
+  border-radius: 8px;
+  background-color: #fffdf0; /* Màu vàng rất nhạt */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.create-new h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #d4a017; /* Vàng đậm */
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.create-new label {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #5f5f5f; /* Xám nhẹ */
+}
+.create-new .price{
+  width: 40%;
+}
+
+.create-new input[type="text"],
+.create-new input[type="tel"],
+.create-new input[type="file"],
+.create-new select,
+.create-new textarea {
+  width: 97%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #d4a017; /* Viền vàng đậm */
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #fffbe6; /* Nền vàng nhạt */
+  color: #333; /* Màu chữ tối */
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.create-new input[type="text"]:focus,
+.create-new input[type="tel"]:focus,
+.create-new input[type="file"]:focus,
+.create-new select:focus,
+.create-new textarea:focus {
+  border-color: #b38e15; /* Vàng tối hơn */
+  box-shadow: 0 0 5px rgba(212, 160, 23, 0.5);
+}
+
+.create-new textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.create-new button {
+  margin-top: 20px;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #d4a017; /* Vàng đậm */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.create-new button:hover {
+  background-color: #b38e15; /* Vàng tối hơn */
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}

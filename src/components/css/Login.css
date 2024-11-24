@@ -1,0 +1,98 @@
+/* Tổng quan */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; /* Đặt chiều cao full màn hình */
+  background-color: #fffbe6; /* Nền vàng nhạt */
+  margin: 500px auto; /* Loại bỏ khoảng cách bên ngoài */
+  padding-top: 200px;
+}
+
+/* Định dạng form */
+.login-form {
+  background: #fffdf0; /* Màu vàng rất nhạt */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  border: 1px solid #d4a017; /* Viền vàng đậm */
+}
+
+/* Tiêu đề */
+.login-form h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #d4a017; /* Màu vàng đậm */
+  font-weight: bold;
+}
+
+/* Nhóm input */
+.input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+  width: 97%;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  color: #5f5f5f; /* Màu xám nhẹ */
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #d4a017; /* Viền vàng đậm */
+  border-radius: 8px;
+  background-color: #fffbe6; /* Nền vàng nhạt */
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #b38e15; /* Vàng tối hơn */
+  box-shadow: 0 0 5px rgba(212, 160, 23, 0.5);
+}
+
+/* Nút đăng nhập */
+.login-button {
+  background: #d4a017; /* Màu vàng đậm */
+  color: #fff;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 104%;
+  font-weight: bold;
+}
+
+.login-button:hover {
+  background: #b38e15; /* Vàng tối hơn khi hover */
+  transform: scale(1.05); /* Phóng to nhẹ */
+}
+
+/* Chữ đăng ký */
+.signup-text {
+  font-size: 0.9rem;
+  color: #5f5f5f; /* Xám nhẹ */
+  margin-top: 1rem;
+}
+
+.signup-text a {
+  color: #d4a017; /* Màu vàng đậm */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+  color: #b38e15; /* Vàng tối hơn khi hover */
+}

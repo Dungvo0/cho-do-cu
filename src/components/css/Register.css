@@ -1,0 +1,125 @@
+/* src/components/Login.css */
+/* src/components/Register.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff8e1; /* Nền màu vàng nhạt */
+  margin: 0;
+  padding: 0;
+}
+
+.login-container,
+.register-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 2px solid #fdd835; /* Viền màu vàng đậm */
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* Nền trắng */
+}
+
+h2 {
+  text-align: center;
+  color: #fbc02d; /* Tiêu đề vàng đậm */
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333; /* Màu chữ nhấn mạnh */
+}
+
+input {
+  width: 95%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #fffdfa; /* Nền vàng nhạt hơn */
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #fdd835; /* Viền vàng đậm khi focus */
+  outline: none;
+  box-shadow: 0 0 8px rgba(253, 216, 53, 0.5);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #fdd835; /* Nút màu vàng đậm */
+  color: #fff; /* Chữ trắng */
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #fbc02d; /* Đổi sang màu vàng sậm khi hover */
+  box-shadow: 0 4px 10px rgba(251, 192, 45, 0.3);
+}
+
+.google-signin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #fdd835;
+  border-radius: 8px;
+  color: #fbc02d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.google-signin:hover {
+  background-color: #fdd835;
+  color: #fff;
+}
+
+.google-signin h4 {
+  margin: 0 8px 0 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.google-signin span {
+  font-size: 14px;
+}
+
+p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+p a {
+  color: #fbc02d;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .login-container,
+  .register-container {
+    margin: 20px 15px;
+  }
+}

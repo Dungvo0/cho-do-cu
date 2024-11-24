@@ -1,0 +1,85 @@
+/* src/components/css/Banner.css */
+.banner {
+    padding: 20px;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: #f4f4f4; /* Light background for contrast */
+    border-radius: 10px; /* Optional rounded corners for the container */
+  }
+  
+  .slick-slide {
+    transition: transform 0.5s ease-in-out; /* Smooth transition between slides */
+  }
+  
+  .slick-prev, .slick-next {
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent dark background for arrows */
+    border-radius: 50%;
+    padding: 10px;
+    z-index: 1;
+  }
+  
+  .slick-prev:before, .slick-next:before {
+    color: #fff; /* White arrow color */
+    font-size: 24px;
+  }
+  
+  .slick-prev {
+    left: 10px; /* Positioning of the left arrow */
+  }
+  
+  .slick-next {
+    right: 10px; /* Positioning of the right arrow */
+  }
+  
+  .slick-dots {
+    bottom: 10px; /* Position of dots */
+    text-align: center;
+  }
+  
+  .slick-dots li button:before {
+    font-size: 12px; /* Size of the dots */
+    color: rgba(0, 0, 0, 0.5); /* Default color for the dots */
+  }
+  
+  .slick-dots li.slick-active button:before {
+    color: #ff5f00; /* Active dot color */
+  }
+  
+  .slick-track {
+    display: flex;
+    align-items: center; /* Vertically center the images */
+  }
+  
+  /* Image styles */
+  .slick-slide img {
+    display: block;
+    margin: 14px;
+    width: 100%; /* Ensure the images fill the container */
+    max-width: 100%;
+    height: 400px; /* Adjust the height for better visibility */
+    object-fit: cover; /* Keep aspect ratio and cover the container */
+    border-radius: 10px; /* Optional rounded corners for images */
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .slick-slide img {
+      height: 250px; /* Adjust image height for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .slick-prev, .slick-next {
+      padding: 8px; /* Reduce the size of arrows on smaller screens */
+    }
+  
+    .slick-dots li button:before {
+      font-size: 10px; /* Smaller dots on mobile */
+    }
+  
+    .slick-slide img {
+      height: 200px; /* Adjust image height further on mobile */
+    }
+  }
+  

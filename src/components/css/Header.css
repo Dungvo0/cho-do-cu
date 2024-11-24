@@ -1,0 +1,214 @@
+/* General header styles */
+.header {
+  width: 99%;
+  background-color: #ffc40c; /* Similar to the yellow background */
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(135, 30, 30, 0.1);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+  height: auto;
+  width: auto;
+}
+
+
+.header-nav {
+  display: flex;
+  
+}
+.header-nav .h3{
+  color: ;
+ 
+}
+.nav-link {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.header-search {
+  padding: 8px;
+  font-size: 16px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.header-search:focus {
+  color: rgb(123, 160, 160);
+  background-color: #dcdbd9;
+  outline-color: rgb(0, 255, 255);
+  box-shadow: -3px -3px 15px rgb(0, 255, 255);
+  transition: .1s;
+  transition-property: box-shadow;
+}
+
+.header-search-btn {
+  touch-action: manipulation;
+  display: inline-block;
+  outline: none;
+  font-family: inherit;
+  font-size: 1em;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0.3em;
+  height: 2em;
+  width: 8em;
+  line-height: 2.5em;
+  text-transform: uppercase;
+  padding: 0 1em;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
+    inset 0 -2px 5px 1px rgba(139, 66, 8, 1),
+    inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+  background-image: linear-gradient(
+    160deg,
+    #a54e07,
+    #b47e11,
+    #fef1a2,
+    #bc881b,
+    #a54e07
+  );
+  border: 1px solid #a55d07;
+  color: rgb(120, 50, 5);
+  text-shadow: 0 2px 2px rgba(250, 227, 133, 1);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+.header-search-btn:focus,
+.header-search-btn:hover {
+  background-size: 150% 150%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23),
+    inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+  border: 1px solid rgba(165, 93, 7, 0.6);
+  color: rgba(120, 50, 5, 0.8);
+}
+
+.header-search-btn:active {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
+    inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 15px ;
+}
+
+.header-btn, .Login-btn {
+  background-color: #ff5f00;
+  color: #fff;
+  border: none;
+  width: 200px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px 10px;
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+}
+
+.header-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.header-bottom {
+  margin-top: 10px;
+  background-color: #ffeb33;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+}
+.header-user-icon {
+  cursor: pointer;
+  font-size: 1.5rem; /* Kích thước icon */
+}
+.header-user-icon:hover {
+  color: #aea92d; /* Thêm hiệu ứng hover nếu cần */
+}
+.header-links {
+  display: flex;
+  gap: 15px;
+  padding: 5px;
+  
+}
+
+.header-links button {
+  background: #cde327;
+  height: 109%;
+  border: none;
+  color: #ff5f00;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.header-links button:hover {
+  text-decoration: none;
+  color: rgb(192, 72, 51);
+  background-color: #dcf13a;
+}
+
+
+.notification-popup {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.notification-popup h4 {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.notification-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item p {
+  margin: 0;
+  color: #333;
+}
+
+.notification-item span {
+  font-size: 0.8rem;
+  color: #777;
+}

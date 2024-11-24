@@ -1,0 +1,42 @@
+.footer {
+    color: #ffc40c;
+    padding: 200px 0 0 0;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .footer-section {
+    flex: 1;
+    min-width: 200px; /* Đảm bảo không quá nhỏ khi thu hẹp màn hình */
+    margin: 10px;
+  }
+  
+  .footer h5 {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .footer a {
+    color: #ffc40c;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer .bg-secondary {
+    background-color: #333;
+    padding: 15px;
+  }
+  
+  .footer ul {
+    padding: 0;
+    list-style: none;
+  }
+  
