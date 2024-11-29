@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import './css/Header.css';
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
-import { IoAddCircle, IoHome, IoLogOut } from "react-icons/io5";
+import {  IoHome, IoLogOut } from "react-icons/io5";
 import { HiBellAlert } from "react-icons/hi2";
 import { auth } from '../firebaseConfig'; // Import Firebase Auth
 import { FcSearch } from "react-icons/fc";
+
 
 const Header = ({ onSearch }) => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const Header = ({ onSearch }) => {
 
   const handleChat = () => {
     if (currentUser) {
-      navigate('/chat/:chatId'); // Điều hướng khi đăng nhập
+      navigate('/ChatList'); // Điều hướng khi đăng nhập
     } else {
       alert('Vui lòng đăng nhập trước!');
     }
@@ -48,6 +49,13 @@ const Header = ({ onSearch }) => {
       alert('Đã xảy ra lỗi khi đăng xuất. Vui lòng thử lại!');
     }
   };
+  const handleHome = () => {
+    if (currentUser) {
+      navigate('/'); // Điều hướng trang home
+    } else {
+      alert('lỗi thông tin vui lòng thử laị sau!!! ');
+    }
+  };
 
   const handleProfile = () => {
     if (currentUser) {
@@ -56,7 +64,9 @@ const Header = ({ onSearch }) => {
       alert('Vui lòng đăng nhập trước!');
     }
   };
-
+  const handleNotificationClick = () => {
+    navigate('/Notification');
+  };
   const handleLogin = () => {
     navigate('/login'); // Luôn điều hướng đến trang đăng nhập
   };
@@ -71,7 +81,7 @@ const Header = ({ onSearch }) => {
     <header className="header">
       <div className="header-top">
         <nav className="header-nav">
-          <h3><IoHome /> Chợ đồ cũ: "Cũ người mới ta!!!"</h3>
+          <h3 title="Home"><IoHome onClick={handleHome}/> Chợ đồ cũ: "Cũ người mới ta!!!"</h3>
         </nav>
         <div className="header-actions">
           <input 
@@ -87,7 +97,7 @@ const Header = ({ onSearch }) => {
         </div>
         <div className="header-user">
           <button className="header-btn" onClick={handleCreateNew} disabled={!currentUser}>
-            Đăng Tin <IoAddCircle />
+            Đăng Tin 
           </button>
           {currentUser ? (
             <>
@@ -97,7 +107,7 @@ const Header = ({ onSearch }) => {
                 onClick={handleProfile}
                 style={{ cursor: 'pointer', textAlign: 'center' }}
               >
-                <FaUserCircle style={{ fontSize: '2.5rem' }} />
+                <FaUserCircle title="Thông tin cá nhân" style={{ fontSize: '2.5rem' }} />
                 <p style={{ fontSize: '0.9rem', margin: '0.5rem 0 0', color: '#333' }}>
                   {currentUser.displayName || currentUser.email}
                 </p>
@@ -110,7 +120,7 @@ const Header = ({ onSearch }) => {
                   fontSize: '2.5rem',
                 }}
               >
-                <IoLogOut />
+                <IoLogOut title="Đăng xuất"/>
               </div>
             </>
           ) : (
@@ -127,18 +137,18 @@ const Header = ({ onSearch }) => {
               opacity: currentUser ? 1 : 0.5,
             }}
           >
-            <IoChatboxEllipsesOutline />
+            <IoChatboxEllipsesOutline title="Danh sách tin nhắn"/>
           </div>
           <div
             className="header-bell-icon"
-            onClick={handleProfile}
+            onClick={handleNotificationClick}
             style={{
               cursor: currentUser ? 'pointer' : 'not-allowed',
               fontSize: '2.5rem',
               opacity: currentUser ? 1 : 0.5,
             }}
           >
-            <HiBellAlert />
+           <div ><HiBellAlert  title="Thông báo" /></div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db, auth } from '../firebaseConfig'; // Thêm auth để kiểm tra người dùng đăng nhập
-import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
+import { collection, getDocs, doc,getDoc, setDoc } from 'firebase/firestore';
 import Select from 'react-select';
 import { useNavigate } from 'react-router-dom'; // Để điều hướng
 import './css/Home.css';
@@ -53,13 +53,12 @@ const Home = ({ searchQuery }) => {
     try {
       const snapshot = await getDocs(collection(db, 'approvedPosts'));
       const productList = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
+        id: doc.id, // Đây chính là Document ID
+        ...doc.data(), // Các trường dữ liệu của document
       }));
-      setProducts(productList);
-      setFilteredProducts(productList);
+      setProducts(productList); // Lưu danh sách sản phẩm với Document ID
     } catch (error) {
-      console.error('Lỗi khi lấy dữ liệu sản phẩm:', error);
+      console.error('Lỗi khi lấy sản phẩm:', error);
     }
   };
 
@@ -80,9 +79,59 @@ const Home = ({ searchQuery }) => {
       alert('Không thể lưu tin. Vui lòng thử lại.');
     }
   };
+  const handleChat = (product) => {
+    if (!currentUser) {
+      alert('Bạn cần đăng nhập để nhắn tin.');
+      return;
+    }
+    if (currentUser.uid === product.ownerId) {
+      alert('Không thể chat với chính mình.');
+      return;
+    }
 
-  const viewPost = (productId) => {
-    navigate(`/post/${productId}`); // Điều hướng đến trang chi tiết bài viết
+    // Điều hướng đến phòng chat giữa currentUser và người đăng bài
+    const chatRoomId =
+      currentUser.uid > product.ownerId
+        ? `${currentUser.uid}_${product.ownerId}`
+        : `${product.ownerId}_${currentUser.uid}`;
+
+    navigate(`/chat/${chatRoomId}`, {
+      state: {
+        currentUser: currentUser.email,
+        otherUser: product.ownerName,
+      },
+    });
+  }
+  
+  
+const reportPost = async (product) => {
+  if (!currentUser) {
+    alert('Bạn cần đăng nhập để báo cáo bài đăng.');
+    return;
+  }
+
+  try {
+    const reportRef = doc(collection(db, 'report'), product.id);
+    const snapshot = await getDoc(reportRef);
+
+    if (snapshot.exists()) {
+      alert('Bài đăng này đã được báo cáo trước đó.');
+    } else {
+      await setDoc(reportRef, {
+        ...product,
+        reportedBy: currentUser.email,
+        reportTime: new Date().toISOString(),
+      });
+      alert('Bài đăng đã được báo cáo thành công!');
+    }
+  } catch (error) {
+    console.error('Lỗi khi báo cáo bài đăng:', error);
+    alert('Không thể báo cáo bài đăng. Vui lòng thử lại.');
+  }
+};
+
+  const viewPost = (docId) => {
+    navigate(`/product/${docId}`); // Điều hướng đến trang chi tiết sản phẩm với Document ID
   };
 
   const filterProducts = () => {
@@ -132,16 +181,17 @@ const Home = ({ searchQuery }) => {
           <option value="0-100000">Dưới 100,000 VND</option>
           <option value="100000-500000">100,000 - 500,000 VND</option>
           <option value="500000-1000000">500,000 - 1,000,000 VND</option>
-          <option value="1000000-5000000">1,000,000 - 5,000,000 VND</option>
+          <option value="1000000-50000000">1,000,000 - 5,000,000 VND</option>
         </select>
 
         <Select
           className="tinh"
+          value={{ label: province, value: province }}
           onChange={(option) => setProvince(option?.value || '')}
           options={provinces.map((prov) => ({ label: prov, value: prov }))}
-          placeholder="Chọn tỉnh/thành phố"
         />
-        <button onClick={filterProducts}>Lọc</button>
+
+        <button className="btn-loc" onClick={filterProducts}>Lọc</button>
       </div>
 
       {filteredProducts.length === 0 ? (
@@ -158,14 +208,15 @@ const Home = ({ searchQuery }) => {
               <div className="product-info">
                 <h3>{product.title}</h3>
                 <p>Giá: {product.price}</p>
-                <p>{product.description}</p>
+                <p>Mô tả :{product.description}</p>
                 <p>Liên hệ: {product.phone}</p>
-                <p>Email: {product.email}</p>
+                
                 <div className="product-actions">
                   <button onClick={() => savePost(product)}>Lưu tin</button>
                   <button onClick={() => viewPost(product.id)}>Xem</button>
-                  <button>Chat</button>
-                  <button>Spam</button>
+                  <button onClick={() => handleChat(product)}>Chat</button>
+                  <button onClick={() => reportPost(product)}>Spam</button>
+
                 </div>
               </div>
             </div>

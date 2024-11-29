@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import './css/Login.css';
 import { auth, googleProvider, db } from '../firebaseConfig'; 
 import { signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Khởi tạo navigate
+  const navigate = useNavigate();
 
   // Đăng nhập bằng email và mật khẩu
   const handleSubmit = async (e) => {
@@ -17,15 +17,17 @@ const Login = () => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Lưu thông tin người dùng vào Firestore
-      await setDoc(doc(db, 'users', user.uid), {
-        email: user.email,
-        uid: user.uid,
-        lastLogin: new Date(),
-      }, { merge: true });
+      // Lấy thông tin người dùng từ Firestore
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      const userData = userDoc.data();
+
+      if (userData?.role === 'admin') {
+        navigate('/admin'); // Chuyển hướng tới trang Admin
+      } else {
+        navigate('/'); // Chuyển hướng tới trang Home
+      }
 
       alert(`Đăng nhập thành công, chào mừng ${user.email}!`);
-      navigate('/home'); // Chuyển hướng tới trang Home
     } catch (error) {
       console.error('Lỗi đăng nhập bằng email/password:', error);
       alert('Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.');
@@ -38,17 +40,30 @@ const Login = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
 
-      // Lưu thông tin người dùng vào Firestore
-      await setDoc(doc(db, 'users', user.uid), {
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-        uid: user.uid,
-        lastLogin: new Date(),
-      }, { merge: true });
+      // Lấy thông tin người dùng từ Firestore
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      const userData = userDoc.data();
+
+      if (userData?.role === 'admin') {
+        navigate('/admin'); // Chuyển hướng tới trang Admin
+      } else {
+        navigate('/'); // Chuyển hướng tới trang Home
+      }
+
+      // Cập nhật thông tin người dùng trong Firestore
+      await setDoc(
+        doc(db, 'users', user.uid),
+        {
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          uid: user.uid,
+          lastLogin: new Date(),
+        },
+        { merge: true }
+      );
 
       alert(`Chào mừng, ${user.displayName}!`);
-      navigate('/'); // Chuyển hướng tới trang Home
     } catch (error) {
       console.error('Lỗi khi đăng nhập với Google:', error);
       alert('Đăng nhập với Google thất bại.');

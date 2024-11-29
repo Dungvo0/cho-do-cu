@@ -1,186 +1,160 @@
-
-.product-card {
-  border: 2px solid #fbc02d; /* Đường viền vàng đậm */
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  background-color: #fffdf5; /* Nền thẻ vàng nhạt */
-  display: flex;
-  flex-direction: column; /* Sắp xếp theo chiều dọc */
-  position: relative; /* Đặt vị trí để cố định các nút */
-  height: 470px; /* Đặt chiều cao cố định cho thẻ sản phẩm */
-  padding-bottom: 60px; /* Chừa khoảng trống cho các nút phía dưới */
-}
 .home {
-  padding: 1%;
-  margin: 4%;
-  border: 2px solid #ffcc00; /* Bo viền màu vàng */
-  border-radius: 10px; /* Bo góc */
-  background-color: #fff8e1; /* Nền vàng nhạt */
-  
-}
-.spdd{
-  color: #d7871f;
-  background: rgb(240, 224, 224);
-  margin:12px;
-  border-radius: 11%;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 100px 120px rgba(244, 240, 26, 0.15);
-}
-
-.product-image {
-  width: 90%;
-  height: 200px;
-  object-fit: cover;
-  border-bottom: 2px solid #fbc02d; /* Đường viền dưới ảnh */
-}
-.product-info {
-  padding: 15px;
-  text-align: center;
-  flex-grow: 1; /* Chiếm không gian còn lại */
-}
-
-.product-info h3 {
-  margin: 10px 0;
-  font-size: 18px;
-  color: #333;
-  font-weight: bold;
-}
-
-.product-info p {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.product-actions {
-  position: absolute; /* Cố định các nút phía dưới thẻ */
-  bottom: 15px; /* Cách cạnh dưới thẻ 15px */
-  left: 0;
-  right: 0;
+.filters {
   display: flex;
-  justify-content: space-around; /* Căn đều các nút */
-  padding: 0 20px 20px; /* Thêm khoảng cách bên trái và phải */
-}
-
-.product-actions button {
-  width: 100px;
-  background-color: #fbc02d; /* Màu nền vàng */
-  color: rgb(172, 26, 26);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  transition: transform 0.3s, background-color 0.3s;
-}
-
-.product-actions button:hover {
-  background-color: #ffa000; /* Màu vàng cam khi hover */
-  transform: scale(1.1); /* Hiệu ứng phóng to */
-}
-
-.product-actions button:active {
-  transform: scale(0.95); /* Hiệu ứng nhấn */
-}
- /* Bộ lọc */
- 
- .filters {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
   flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 20px;
   align-items: center;
-}
-.product-card {
-  border: 2px solid #fbc02d; /* Đường viền vàng đậm */
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  background-color: #fffdf5; /* Nền thẻ vàng nhạt */
-  display: flex;
-  flex-direction: column; /* Sắp xếp theo chiều dọc */
-  position: relative; /* Đặt vị trí để cố định các nút */
-  height: 470px; /* Đặt chiều cao cố định cho thẻ sản phẩm */
-  padding-bottom: 60px; /* Chừa khoảng trống cho các nút phía dưới */
+  justify-content: space-between;
 }
 
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 100px 120px rgba(244, 240, 26, 0.15);
-}
-
-.product-image {
-  width: 90%;
-  height: 200px;
-  object-fit: cover;
-  border-bottom: 2px solid #fbc02d; /* Đường viền dưới ảnh */
-  transition: transform 0.7s ease; /* Thêm hiệu ứng cho ảnh khi hover */
-}
-.tinh{
-  width: 200px;
-  height: auto;
-
-}
-
-.product-card:hover .product-image {
-  transform: scale(1.2); /* Phóng to ảnh lên 120% */
-}
-
-.filters select,
-.filters .react-select__control {
-  padding: 6px 10px;
-  border: 1px solid #ffcc00; /* Màu vàng cho khung */
-  border-radius: 5px;
+.filters select, .filters .tinh {
+  width: 180px;
+  padding: 8px;
   font-size: 14px;
-  width: 180px; /* Giảm chiều rộng */
-  background-color: #fff8e1; /* Nền vàng nhạt */
-  color: #333; /* Màu chữ */
-}
-
-.filters .react-select__control {
-  background-color: #fff8e1; /* Đảm bảo react-select có nền vàng nhạt */
-  color: #333; /* Màu chữ */
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .filters button {
-  width: 10%;
-  padding: 6px 10px;
-  border: none;
-  background-color: #ffcc00; /* Nền nút màu vàng */
+  padding: 8px 16px;
+  background-color: #f0ad4e;
   color: white;
-  font-size: 13px;
-  cursor: pointer;
+  border: none;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .filters button:hover {
-  background-color: #ffb300; /* Đổi màu khi hover */
+  background-color: #ec971f;
 }
 
-.filters label {
-  font-size: 14px;
-  color: #ffcc00; /* Màu vàng cho label */
-  margin-right: 8px;
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
 }
 
-.filters input[type="number"],
-.filters input[type="text"],
-.filters input[type="tel"] {
-  padding: 6px 10px;
-  border: 1px solid #ffcc00; /* Màu vàng cho khung input */
+.product-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative; /* Để các phần tử bên trong sử dụng position tuyệt đối */
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.btn-loc{
+  width: 7%;
+}
+
+.product-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+.product-actions button:last-child {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
   border-radius: 5px;
+}
+
+.product-actions button:last-child:hover {
+  background-color: #cc0000;
+}
+
+.product-image-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  background-color: #f7f7f7;
   font-size: 14px;
-  width: 180px; /* Giảm chiều rộng */
-  background-color: #fff8e1; /* Nền vàng nhạt */
-  color: #333; /* Màu chữ */
+  color: #aaa;
+}
+
+.product-info {
+  padding: 10px;
+  font-size: 14px;
+  padding-bottom: 60px; /* Dành không gian cho nút bên dưới */
+}
+
+.product-info h3 {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.product-info p {
+  font-size: 12px;
+  margin: 3px 0;
+  color: #555;
+}
+
+.product-actions {
+  position: absolute; /* Cố định ở dưới */
+  bottom: 0; /* Căn phía dưới của thẻ */
+  left: 0;
+  width: 90%; /* Đảm bảo nút phủ hết chiều ngang */
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9; /* Nền nhẹ để phân biệt */
+  padding: 5px 10px;
+  border-top: 1px solid #ddd;
+}
+
+.product-actions button {
+  padding: 5px 10px;
+  font-size: 12px;
+  color: white;
+  background-color: #5cb85c;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-actions button:hover {
+  background-color: #4cae4c;
+}
+
+.product-actions button:nth-child(2) {
+  background-color: #0275d8;
+}
+
+.product-actions button:nth-child(2):hover {
+  background-color: #025aa5;
+}
+
+.product-actions button:nth-child(3) {
+  background-color: #f0ad4e;
+}
+
+.product-actions button:nth-child(3):hover {
+  background-color: #ec971f;
+}
+
+.product-actions button:nth-child(4) {
+  background-color: #d9534f;
+}
+
+.product-actions button:nth-child(4):hover {
+  background-color: #c9302c;
 }

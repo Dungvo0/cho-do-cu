@@ -8,21 +8,23 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
-import ProductListing from './components/ProductListing';
 import ProductDetails from './components/ProductDetails';
 import Profile from './components/Profile';
-import Cart from './components/Cart';
 import ContactUs from './components/ContactUs';
 import About from './components/About';
 import Admin from './components/Admin';
 import Chat from './components/Chat';
+import ChatList from './components/ChatList';
+import ReportedPosts from './components/ReportedPosts';
+import Notification from './components/Notification';
+
 
 const AppContent = () => {
   const [searchQuery, setSearchQuery] = useState(''); // State lưu từ khóa tìm kiếm
   const location = useLocation();
 
   // Ẩn Header và Footer trên các trang Login và CreateNew
-  const hideHeaderFooter = ["/login", "/create", "/admin", "/profile", "/register"].includes(location.pathname.toLowerCase());
+  const hideHeaderFooter = ["/login", "/create", "/admin", "/profile", "/register","/profile","/reported","/Notification" ,].includes(location.pathname.toLowerCase());
 
   const images = [
     'http://surl.li/mwozah',
@@ -44,17 +46,18 @@ const AppContent = () => {
       <Routes>
         {/* Truyền searchQuery vào Home */}
         <Route path="/" element={<Home searchQuery={searchQuery} />} />
+        <Route path="/Notification" element={<Notification/>} />
         <Route path="/create" element={<CreateNew />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/products" element={<ProductListing />} />
-        <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/cart" element={<Cart />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/about" element={<About />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/chat/:chatId" element={<Chat />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/reported" element={<ReportedPosts />} />
+
         
       </Routes>
 

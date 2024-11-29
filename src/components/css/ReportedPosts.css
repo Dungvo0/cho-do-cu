@@ -1,0 +1,183 @@
+/* ReportedPosts.css */
+
+/* Tổng thể */
+.reported-posts {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom, #fff8e1, #fff3cd);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .reported-posts h1 {
+    font-size: 28px;
+    text-align: center;
+    color: #ffbf00;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+  }
+  
+  /* Phần danh sách bài đăng */
+  .table-container {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ffd966;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
+  }
+  
+  thead {
+    background-color: #ffbf00;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  thead th {
+    text-align: left;
+    padding: 14px 10px;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #fffbe6;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #fff8d1;
+  }
+  
+  tbody tr:hover {
+    background: linear-gradient(to right, #ffe680, #fff8e1);
+    transition: background-color 0.4s ease;
+    cursor: pointer;
+  }
+  
+  tbody td {
+    padding: 12px 10px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ffd966;
+  }
+  
+  /* Hình ảnh */
+  img {
+    display: block;
+    border-radius: 8px;
+    border: 2px solid #ffbf00;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(255, 191, 0, 0.5);
+  }
+  
+  /* Nút */
+  button {
+    width: 100px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(45deg, #ffa726, #ff8f00);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  button:hover {
+    background: linear-gradient(45deg, #ffcc80, #ff6f00);
+    box-shadow: 0 6px 12px rgba(255, 111, 0, 0.4);
+    transform: translateY(-3px);
+  }
+  
+  button:active {
+    background: #ff9800;
+    transform: translateY(1px);
+  }
+  
+  /* Phần footer */
+  .reported-posts-footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #fff3cd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #ff8f00;
+    font-weight: bold;
+  }
+  
+  /* Hiệu ứng */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    table {
+      font-size: 14px;
+    }
+  
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  
+    button {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+  }
+  /* CSS cho Nút Quay lại */
+.back-button {
+    width: 20%;
+    background-color: #ffbf00;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  
+  .back-button:hover {
+    background-color: #ff9800;
+    box-shadow: 0 6px 12px rgba(255, 111, 0, 0.4);
+  }
+  
+  .back-button:active {
+    background-color: #ff6f00;
+  }
+  

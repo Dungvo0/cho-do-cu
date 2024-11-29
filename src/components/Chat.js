@@ -1,84 +1,96 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { auth, db } from '../firebaseConfig';
-import { doc, getDoc, setDoc, updateDoc, arrayUnion, onSnapshot } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+import { collection, doc, getDoc, addDoc, query, onSnapshot, orderBy } from 'firebase/firestore';
+import { auth } from '../firebaseConfig';
 import './css/Chat.css';
 
-const Chat = () => {
-  const { chatId } = useParams(); // Lấy chatId từ URL
-  const currentUser = auth.currentUser;
-  const [recipient, setRecipient] = useState(null);
+const Chat = ({ currentChatId, postOwnerId }) => {
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
+  const [text, setText] = useState('');
+  const [postOwnerDetails, setPostOwnerDetails] = useState(null); // Thông tin chủ bài đăng
+  const user = auth.currentUser; // Người dùng hiện tại
 
-  // Lấy thông tin người nhận
+  // Lấy tin nhắn của cuộc trò chuyện
   useEffect(() => {
-    const fetchRecipient = async () => {
-      const userIds = chatId.split('_');
-      const recipientId = userIds.find((id) => id !== currentUser.uid);
-      const recipientDoc = await getDoc(doc(db, 'users', recipientId));
-      setRecipient(recipientDoc.data());
-    };
-    fetchRecipient();
-  }, [chatId, currentUser.uid]);
+    if (!currentChatId) return;
 
-  // Theo dõi tin nhắn
-  useEffect(() => {
-    const chatRef = doc(db, 'chats', chatId);
-    const unsubscribe = onSnapshot(chatRef, (doc) => {
-      if (doc.exists()) {
-        setMessages(doc.data().messages || []);
-      }
+    const messagesRef = collection(db, 'chats', currentChatId, 'messages');
+    const q = query(messagesRef, orderBy('timestamp', 'asc'));
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const msgs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setMessages(msgs);
     });
+
     return () => unsubscribe();
-  }, [chatId]);
+  }, [currentChatId]);
+
+  // Lấy thông tin chủ bài đăng
+  useEffect(() => {
+    if (!postOwnerId) return;
+
+    const fetchOwnerDetails = async () => {
+      try {
+        const userRef = doc(db, 'users', postOwnerId); // Tìm thông tin chủ bài đăng từ `users`
+        const userSnapshot = await getDoc(userRef);
+        if (userSnapshot.exists()) {
+          setPostOwnerDetails(userSnapshot.data());
+        } else {
+          setPostOwnerDetails({ name: 'Người dùng không xác định' });
+        }
+      } catch (error) {
+        console.error('Lỗi khi lấy thông tin chủ bài đăng:', error);
+        setPostOwnerDetails({ name: 'Lỗi khi tải dữ liệu' });
+      }
+    };
+
+    fetchOwnerDetails();
+  }, [postOwnerId]);
 
   // Gửi tin nhắn
-  const sendMessage = async (e) => {
-    e.preventDefault();
-    if (!newMessage.trim()) return;
+  const sendMessage = async () => {
+    if (text.trim() === '') return;
 
-    const chatRef = doc(db, 'chats', chatId);
-    const message = {
-      senderId: currentUser.uid,
-      message: newMessage,
+    const messageData = {
+      senderId: user.uid,
+      senderName: user.displayName || user.email, // Tên người gửi hoặc email làm dự phòng
+      text,
       timestamp: new Date(),
     };
 
-    try {
-      await updateDoc(chatRef, {
-        messages: arrayUnion(message),
-      });
-    } catch (error) {
-      await setDoc(chatRef, { participants: [currentUser.uid, recipient.uid], messages: [message] });
-    }
+    const messagesRef = collection(db, 'chats', currentChatId, 'messages');
+    await addDoc(messagesRef, messageData);
 
-    setNewMessage('');
+    setText('');
   };
 
   return (
     <div className="chat-container">
-      <h2>Chat với {recipient?.displayName}</h2>
-      <div className="chat-messages">
-        {messages.map((msg, index) => (
+      <div className="chat-header">
+        <h2>
+          Trò chuyện với: {user.displayName }
+        </h2>
+      </div>
+      <div className="messages">
+        {messages.map((msg) => (
           <div
-            key={index}
-            className={msg.senderId === currentUser.uid ? 'message sent' : 'message received'}
+            key={msg.id}
+            className={`message ${msg.senderId === user.uid ? 'sent' : 'received'}`}
           >
-            <p>{msg.message}</p>
-            <span>{new Date(msg.timestamp.seconds * 1000).toLocaleTimeString()}</span>
+            {msg.senderId !== user.uid && <p className="sender-name">{msg.senderName}</p>}
+            <p>{msg.text}</p>
           </div>
         ))}
       </div>
-      <form onSubmit={sendMessage} className="chat-input">
-        <input
-          type="text"
+      <div className="input-area">
+        <textarea
+          rows="1"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           placeholder="Nhập tin nhắn..."
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
         />
-        <button type="submit">Gửi</button>
-      </form>
+        <button onClick={sendMessage}>Gửi</button>
+      </div>
     </div>
   );
 };

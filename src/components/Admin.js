@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { signOut } from 'firebase/auth'; // Để đăng xuất
+import { auth } from '../firebaseConfig'; // Firebase auth
+import { useNavigate } from 'react-router-dom'; // Điều hướng giữa các trang
 import { db } from '../firebaseConfig';
 import { collection, getDocs, doc, deleteDoc, addDoc } from 'firebase/firestore';
 import './css/Admin.css';
@@ -7,6 +10,21 @@ const Admin = () => {
   const [waitingPosts, setWaitingPosts] = useState([]); // Bài đăng chờ duyệt
   const [approvedPosts, setApprovedPosts] = useState([]); // Bài đăng đã duyệt
   const [users, setUsers] = useState([]); // Quản lý tài khoản
+  const navigate = useNavigate(); // Điều hướng
+  const handleLogout = async () => {
+    try {
+      await signOut(auth); // Firebase logout
+      alert('Đăng xuất thành công!');
+      navigate('/login'); // Điều hướng đến trang login
+    } catch (error) {
+      console.error('Lỗi khi đăng xuất:', error);
+    }
+  };
+
+  // Chuyển đến trang "Các tài khoản bị tố cáo"
+  const goToReported = () => {
+    navigate('/reported'); // Điều hướng đến trang "ReportedAccounts"
+  };
 
   // Lấy dữ liệu bài đăng từ Firestore
   const fetchPosts = async () => {
@@ -61,6 +79,7 @@ const Admin = () => {
     }
   };
 
+
   // Xóa bài đăng
   const deletePost = async (collectionName, postId, userEmail, postTitle) => {
     try {
@@ -114,6 +133,14 @@ const Admin = () => {
 
   return (
     <div className="admin">
+     <div className="admin-header">
+      <button onClick={handleLogout} className="logout-button">
+        Đăng xuất
+      </button>
+      <button onClick={goToReported} className="reported-button">
+        Các bài đăng bị tố cáo 
+      </button>
+    </div>
       <h1> Admin </h1>
 
       {/* Quản lý bài đăng chờ duyệt */}

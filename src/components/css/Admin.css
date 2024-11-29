@@ -27,7 +27,17 @@
   margin-bottom: 20px;
   gap: 10px;
 }
-
+.admin-header button{
+  flex:1;
+  width: 25%;
+  margin: 15px;
+}
+.admin-header button:hover{
+  flex:1;
+  width: 35%;
+  color: #28a745;
+  background-color: #dc3545;
+}
 .tab-container button {
   background-color: #007bff;
   color: #ffffff;
